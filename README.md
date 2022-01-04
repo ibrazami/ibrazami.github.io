@@ -1,4 +1,4 @@
-# Portfolio
+# ibrazami.github.io
 Welcome to my page
 
 My Name is Ibrahim Razami and here you can look at some of my work.
