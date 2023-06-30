@@ -17,7 +17,7 @@ img a {
 
 .essay {
     position: absolute;
-    font-size: .9em;
+    font-size: 15px;
     color: #cdcdcd
 }
 
@@ -139,7 +139,7 @@ img a {
      font-family: gotham ssm a, gotham ssm b, helvetica neue, Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 11px;
+    font-size: 13px;
     color: #fff;
     text-decoration: none;
     margin-top: 8px;
@@ -153,8 +153,8 @@ img a {
 }
 #donate img {
     position: absolute;
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     margin-left: 20px;
     opacity: .5
 }
@@ -228,7 +228,7 @@ img a {
     font-family: gotham ssm a, gotham ssm b, helvetica neue, Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 12px;
+    font-size: 13px;
     color: #e8e8e8;
     text-align: right;
     position: fixed;
@@ -354,7 +354,7 @@ img a {
     background-image: url(tickered.svg);
     background-repeat: repeat-x;
     background-position: left bottom;
-    width: 53000px;
+    width: 53200px;
     height: 99.9%
 }
 
