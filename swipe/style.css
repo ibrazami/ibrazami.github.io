@@ -20,8 +20,8 @@ p{
 /* Book */
 .book {
     position: relative;
-    width: 600px;
-    height: 400px;
+    aspect-ratio: 3/2;
+    width: 40vw;
     transition: transform 0.5s;
 }
 
