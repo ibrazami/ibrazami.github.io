@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Youtube Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="images/Asset 3.png" alt="" /></span>
+					<h1 id="logo">Ibrahim Razami</h1>
+					<!-- <p>by Ibrahim Razami</p> -->
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="#one" class="active">Abstrak</a></li>
+						<li><a href="#two">Persiapan Data</a></li>
+						<li><a href="#three">Rekayasa Fitur</a></li>
+						<li><a href="#four">Pemodelan</a></li>
+						<li><a href="#five">Hasil Prediksi</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="https://ibrazami.github.io" class="icon solid fa-home"><span class="label">Home</span></a></li>
+						<li><a href="https://github.com/ibrazami" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/ibrahim-razami-935850106/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="image main" data-position="center">
+									<img src="images/banner.jpg" alt="" />
+								</div>
+								<div class="container">
+									<header class="major">
+										<h2>YouTube Likes Prediction</h2>
+										<p>Melakukan prediksi terhadap rasio Suka terhadap Tayangan (Like-to-View Ratio)
+										di YouTube </p>
+									</header>
+									<p>Prediksi dilakukan menggunakan model regresi dengan skor R² = 0,8413. Ditemukan bahwa video 
+										berdurasi singkat memiliki rasio Like-to-View yang lebih tinggi. Pada hari pertama setelah diunggah, 
+										rasio tersebut memiliki skor tinggi, namun menurun setelah beberapa hari.</p>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two">
+								<div class="container">
+									<h3>Persiapan Data</h3>
+									<p>Dataset untuk pelatihan model terdiri dari 92.275 baris dan 20 kolom, 
+										sedangkan dataset untuk pengujian model terdiri dari 5.800 baris dan 16 kolom. 
+										Perbedaan antara keduanya terletak pada kolom Jumlah Suka, Jumlah Tidak Suka, 
+										Jumlah Komentar, dan kolom target, yang hanya terdapat dalam dataset pelatihan. 
+										Dataset ini bersumber dari <a href="https://www.kaggle.com/c/kaggle-pog-series-s01e01">Kaggle</a>.</p>
+									<h4>Pengecekan data duplikat</h4>
+									<p>Baris dalam dataset disusun berdasarkan tanggal tren dengan pencatatan harian. 
+										Satu video dapat muncul di beberapa baris dengan nilai yang berbeda pada tanggal tayang, jumlah tayangan, 
+										jumlah suka, jumlah tidak suka, jumlah komentar, dan nilai target. 
+										Oleh karena itu, dapat disimpulkan bahwa tidak ada data duplikat. 
+										<a class="image"><img src="images/YT tabel duplikat.png" style="max-width: 100%; height: auto"/></a></p>
+									<h4>Penangan nilai null</h4>
+									<p>Sebanyak 14,7% data tidak memiliki nilai pada kolom tags, dan 1,6% pada kolom deskripsi. 
+										Kedua kolom tersebut diubah dari format <i>string</i> menjadi<i> NaN</i>. 
+										Sementara itu, pada kolom durasi, terdapat 2,3% nilai null, yang kemudian diimputasi menggunakan median. </p>
+									<h4>Penangan outlier</h4>
+									<p>Visualisasi boxplot menunjukkan banyaknya outlier, sehingga penanganan outlier tidak dilakukan untuk menjaga karakteristik data.
+										<a class="image"><img src="images/YT boxplot.png" style="max-width: 100%; height: auto" /></a></p>										
+									<p>Terdapat 86 video yang menonaktifkan rating sehingga tidak memiliki jumlah suka, jumlah tidak suka, dan nilai target. 
+										Oleh karenanya video dengan<i> rating_disabled</i> akan dihapus. 
+										<br>Video dengan pengaturan<i> comment_disabled</i> akan tetap dipertahankan karena masih memiliki nilai target.</p>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three">
+								<div class="container">
+									<h3>Rekayasa Fitur</h3>
+									<h4>Format Tanggal</h4>
+									<p>Tanggal unggah pada data pelatihan berkisar antara 3 Agustus 2020 hingga 29 November 2021, 
+										sedangkan pada data pengujian berkisar antara 15 November 2021 hingga 29 Desember 2021.
+										Data tanggal pada kolom published_date dan trending_date diubah menjadi data ordinal.</p>
+									<p>Grafik di bawah menunjukkan video yang paling lama <i>trending</i>, yaitu selama 36 hari. 
+										Dari grafik, terlihat bahwa jumlah tayangan mulai stabil sejak 9 hari setelah diunggah.
+										<a class="image"><img src="images/YT viewcount.png" style="max-width: 100%; height: auto" /></a></p>	
+									<p>Tampaknya video mendapatkan lebih banyak suka saat awal diunggah dan menjadi stabil setelah beberapa waktu. 
+										Oleh karena itu, saya akan menambahkan kolom baru yang menghitung selisih tanggal <i>trending</i> dengan waktu awal unggah.
+										<a class="image"><img src="images/YT like by date.png" style="max-width: 100%; height: auto" /></a></p>
+									<h4>Format kolom Tag dan Deskripsi</h4>
+									<p>Ditemukan 103.450 tag unik. Karena jumlahnya sangat banyak, dibuat kolom baru untuk menandai apakah suatu video memiliki tag atau tidak.
+										Untuk memproses kolom deskripsi, diperlukan Natural Language Processing (NLP).
+										 Namun, karena fokus utama adalah regresi, kolom deskripsi akan diubah dalam boolean.
+										 <a class="image"><img src="images/YT hastag.png" style="max-width: 100%; height: auto" /></a></p>
+									</p>	
+									<h4>Tipe data objek</h4>
+									<p>Untuk kolom dengan tipe data objek, karena nilainya bersifat identitas, kolom-kolom tersebut akan dihapus.
+										<a class="image"><img src="images/YT kolom objek.png" style="max-width: 60%; height: auto" /></a></p>
+									</p>
+								</div>
+							</section>
+
+						<!-- Four -->
+							<section id="four">
+								<div class="container">
+									<h3>Pemodelan</h3>
+									<p>Dataset untuk pelatihan model yang sudah diberishkan terdiri dari 91.830 baris dan 16 kolom, 
+										dengan perbedaan dibandingkan dataset pengujian terletak pada kolom target
+										<a class="image"><img src="images/YT final df.png" style="max-width: 50%; height: auto; margin-top: 5px;margin-bottom: -20px;" /></a></p>
+									<p>Model dilatih menggunakan 80% data untuk pelatihan dan dievaluasi dengan 20% data untuk pengujian.
+										<br>Regresi awal dilakukan menggunakan model LightGBM, XGBoost, sklearn LinearRegression, sklearn DecisionTreeRegressor, dan sklearn RandomForestRegressor. 
+										Dari hasil evaluasi, model XGBoost dipilih karena memiliki nilai R² tertinggi.
+										<a class="image"><img src="images/YT model eval.png" style="max-width: 50%; height: auto;margin-top: 5px;margin-bottom: -20px;" /></a>
+									</p>	
+									<h4>Tuning model</h4>
+									<p>Model XGBoost kemudian dilatih kembali menggunakan sklearn RandomizedSearchCV untuk mencari parameter terbaik. 
+										Setelah dilakukan hyperparameter tuning, model menunjukkan peningkatan nilai R² sebesar 30%, 
+										sehingga model yang telah dioptimalkan digunakan.
+										<a class="image"><img src="images/YT best param.png" style="max-width: 50%; height: auto;margin-top: 5px;margin-bottom: -20px;" /></a></p>
+								</div>
+							</section>
+
+						<!-- Five -->
+							<section id="five">
+								<div class="container">
+									<h3>Hasil Prediksi</h3>
+									<p>Dari grafik, terlihat bahwa jarak antara nilai aktual dan prediksi cukup dekat. Dengan skor R² yang baik, dapat disimpulkan bahwa model mampu memprediksi Like-to-View Ratio pada video YouTube dengan akurat.
+										<br><a class="image"><img src="images/YT result.png" style="max-width: 100%; height: auto" /></a></p>
+									<p>Durasi dan variabel yang berhubungan dengan tanggal memiliki signifikansi tertinggi. Oleh karena itu, kita dapat fokus pada variabel-variabel tersebut untuk menjelaskan Like-to-View Ratio pada video YouTube.
+										<br><a class="image"><img src="images/YT feature.png" style="max-width: 100%; height: auto" /></a></p>	
+									<p>Video dengan durasi singkat lebih disukai.
+										<br><a class="image"><img src="images/YT by duration.png" style="max-width: 100%; height: auto" /></a></p>	
+									<p>Like-to-View rasio akan menurun setelah video diunggah dan kemudian menjadi stabil. 
+										Jika melihat sistem notifikasi YouTube, kemungkinan besar orang yang menonton video yang baru diunggah adalah <i>subscribers</i>. 
+										Karena mereka sudah menyukai channel tersebut, kemungkinan besar mereka juga akan menyukai videonya.
+										Sehingga Waktu unggahan perlu disesuaikan dengan waktu aktif dari <i>subscriber</i>										
+										<a class="image"><img src="images/YT most popular.png" style="max-width: 100%; height: auto" /></a></p>	
+											
+									<h4> 
+										Untuk melihat detail dan kodingan, tekan tombol ini 
+											<a href="https://github.com/ibrazami/YouTube-likes-prediction.git" class="icon solid fa-lightbulb"></a>
+									</h4>
+								</div>
+							</section>
+
+
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; ibrazami. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

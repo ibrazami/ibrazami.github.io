@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Covid Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="images/Asset 3.png" alt="" /></span>
+					<h1 id="logo">Ibrahim Razami</h1>
+					<!-- <p>I got reprogrammed by a rogue AI<br />
+					and now I'm totally cray</p> -->
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="#one" class="active">Abstrak</a></li>
+						<li><a href="#two">Pengumpulan Data</a></li>
+						<li><a href="#three">Persiapan Data</a></li>
+						<li><a href="#four">Pemodelan</a></li>
+						<li><a href="#five">Prediksi</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="https://ibrazami.github.io" class="icon solid fa-home"><span class="label">Home</span></a></li>
+						<li><a href="https://github.com/ibrazami" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/ibrahim-razami-935850106/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="image main" data-position="center">
+									<img src="images/banner.jpg" alt="" />
+								</div>
+								<div class="container">
+									<header class="major">
+										<h2>Covid Daily Cases Prediction</h2>
+									</header>
+									<p>Dilakukan prediksi jumlah kasus COVID-19 di Indonesia periode 1-14 Desember 2021 menggunakan metode regresi polinomial.
+										Hasil menunjukkan bahwa tidak ada perubahan besar dalam jumlah kasus harian. 
+										Prediksi ini menganggap bahwa tidak ada lonjakan kasus mendadak atau munculnya varian baru.
+									</p>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two">
+								<div class="container">
+									<h3>Pengumpulan Data</h3>
+									<p>Data yang diolah adalah data Covid-19 di Indonesia yang diambil dari situs kawalcovid19. 
+										Dengan periode data antara tanggal 1 Mei 2021 - 30 November 2021.
+										<a class="image"><img src="images/covid df.png" style="max-width: 100%; height: auto" /></a></p>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three">
+								<div class="container">
+									<h3>Persiapan Data</h3>
+									<p>Persiapan data yang dilakukan adalah mengubah tipe data kolom tanggal dari <i>object</i> menjadi format <i>datetime</i>.
+										Tidak ada data dengan nilai <i>null</i> sehingga dataset sudah dapat digunakan. Berikut gambaran dari jumlah kasus harian pada dataset.
+										<br><a class="image"><img src="images/covid awal.png" style="max-width: 100%; height: auto" /></a>
+									</p>									
+								</div>
+							</section>
+
+						<!-- Four -->
+							<section id="four">
+								<div class="container">
+									<h3>Pemodelan</h3>
+									<p>Metode yang digunakan untuk memprediksi jumlah kasus harian adalah regresi. Data jumlah kasus yang terjadi selama 'n' hari sebelumnya 
+										digunakan sebagai acuan untuk memprediksi jumlah kasus baru. 
+										Data harian diubah menjadi jumlah kasus per hari berdasarkan tanggal selama 10 hari yang sudah diurutkan.
+										<br><a class="image"><img src="images/covid transformasi.png" style="max-width: 70%; height: auto" /></a>
+									</p>
+									<p>Data dibagi menjadi 80% untuk pelatihan dan 20% untuk pengujian.
+										<br><a class="image"><img src="images/covid train test.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Pengujian awal dilakukan dengan 2 model yaitu <i>random forest regressor</i> dan <i>decision tree regressor</i>.
+										Model <i>decision tree</i> memiliki hasil yang lebih akurat, sehingga model ini akan digunakan untuk prediksi.
+										<br><a class="image"><img src="images/covid eval.png" style="max-width: 70%; height: auto" /></a>
+									</p>
+								</div>
+							</section>
+
+						<!-- Five -->
+							<section id="five">
+								<div class="container">
+									<h3>Prediksi</h3>
+									<p>Diperkirakan jumlah kasus baru covid di Indonesia pada 1-14 Des 2021 (213 hari setelah 1 Mei) akan mengikuti pola kasus sejak sebulan sebelumnya.
+										<br><a class="image"><img src="images/covid result.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Diprediksi tidak ada perubahan signifikan pada jumlah kasus harian dengan rata-rata 361 kasus, kasus terendah sejumlah 186 dan kasus tertinggi pada angka 522.
+										<br><a class="image"><img src="images/covid result table.png" style="max-width: 80%; height: auto" /></a>
+									</p>
+									<h4> 
+										Untuk melihat detail dan kodingan, tekan tombol ini 
+											<a href="https://github.com/ibrazami/Covid-prediction.git" class="icon solid fa-lightbulb"></a>
+									</h4>
+								</div>
+							</section>				
+
+							
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; ibrazami. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

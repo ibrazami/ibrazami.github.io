@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>RFM and Cohort</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="images/Asset 3.png" alt="" /></span>
+					<h1 id="logo">Ibrahim Razami</h1>
+					<!-- <p>I got reprogrammed by a rogue AI<br />
+					and now I'm totally cray</p> -->
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="#one" class="active">Abstrak</a></li>
+						<li><a href="#two">Pembersihan Data</a></li>
+						<li><a href="#three">Analisis Eksplorasi</a></li>
+						<li><a href="#four">Analisis RFM</a></li>
+						<li><a href="#five">Segmentasi Pelanggan</a></li>
+						<li><a href="#six">Analisis Cohort</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="https://ibrazami.github.io" class="icon solid fa-home"><span class="label">Home</span></a></li>
+						<li><a href="https://github.com/ibrazami" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/ibrahim-razami-935850106/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="image main" data-position="center">
+									<img src="images/banner.jpg" alt="" />
+								</div>
+								<div class="container">
+									<header class="major">
+										<h2>RFM and Cohort Analysis</h2>
+									</header>
+									<p>Analisis data transaksi dapat memberikan wawasan berharga tentang pola pembelian pelanggan. 
+										Dalam hal ini, akan dilakukan analisis RFM dan analisis Cohort menggunakan dataset Online Retail dari UCI Machine Learning Repository.
+										Dataset ini mencatat transaksi dari 1 Desember 2010 hingga 9 Desember 2011 untuk sebuah toko ritel online yang berbasis di Inggris.</p>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two">
+								<div class="container">
+									<h3>Pembersihan Data</h3>
+									<p>Dataset terdiri dari 541.909 baris dan 8 kolom. Data duplikat sebanyak 5.268 telah dihapus.
+										Terdapat 10.587 baris dengan nilai jumlah negatif dan 2 baris dengan harga unit negatif, 
+										yang merupakan transaksi <i>Cancelled Order</i> dan <i>Abandoned Order</i>. Karena transaksi ini tidak mencerminkan pembelian sebenarnya, 
+										analisis akan dilanjutkan hanya dengan data bernilai positif.										
+										Karena analisis berfokus pada segmentasi pelanggan, data dengan Customer ID kosong akan dihapus, karena pelanggan tersebut tidak dapat diidentifikasi.
+									<br><a class="image"><img src="images/RFM df.png" style="max-width: 80%; height: auto" /></a>
+									</p>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three">
+								<div class="container">
+									<h3>Analisis Eksplorasi</h3>
+									<p>Mayoritas pelanggan melakukan pembelian dalam jumlah kecil, 
+										namun ada juga pelanggan yang melakukan pembelian dalam jumlah besar atau grosiran.
+										<br><a class="image"><img src="images/RFM eksplore.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Terlihat bahwa kebanyakan pelanggan berasal dari Britania Raya dengan persentase lebih dari 90%. Hal ini terbilang wajar karena perusahaan berdomisili di Inggris.
+										<br><a class="image"><img src="images/RFM by county.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>
+										Karena jumlah pelanggan di Britania Raya jauh lebih tinggi dibandingkan negara lain, grafik dibuat tanpa menyertakannya. 
+										Dari grafik di bawah, terlihat bahwa sebagian besar pelanggan berasal dari Benua Eropa,
+										 sementara produk yang dijual juga telah mencapai Asia dan Amerika Selatan.
+										<br><a class="image"><img src="images/RFM no UK.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Britania Raya memiliki jumlah pelanggan dan pendapatan penjualan terbanyak karena mayoritas data berasal dari negara ini. 
+										Analisis akan berfokus pada segmentasi pelanggan di wilayah tersebut.<br>
+										Produk yang paling banyak terjual adalah hiasan. Sehingga untuk produk kategori ini dapat ditambah persediannya, terutama saat mendekati masa liburan yang membutuhkan ornamen.
+										<br><a class="image"><img src="images/RFM most product.png" style="max-width: 70%; height: auto" /></a>										
+									</p>
+									<p>Ditemukan 1554 jenis produk yang hanya dibeli sekali. Untuk produk-produk ini dapat dievaluasi kembali apakah akan kembali dijual/tidak.
+										<br><a class="image"><img src="images/RFM sekali.png" style="max-width: 70%; height: auto" /></a></p>
+									
+								</div>
+							</section>
+
+						<!-- Four -->
+							<section id="four">
+								<div class="container">
+									<h3>Analisis RFM</h3>
+									<h4>Recency</h4>
+									<p><i>Recency</i> adalah waktu sejak pembelian terakhir yang dilakukan pelanggan. Terlihat bahwa distribusi nilai<i> recency</i> condong ke kanan. 
+										Hal ini menunjukkan bahwa kebanyakan pelanggan masih membeli produk yang dijual. 
+										Semakin besar nilai <i>recency</i> berarti semakin lama pelanggan tidak berbelanja.
+										<br><a class="image"><img src="images/RFM recency.png" style="max-width: 100%; height: auto" /></a></p>
+									<h4>Frequency</h4>
+									<p><i>Frequency</i> adalah jumlah pembelian yang dilakukan pelanggan. Grafik dibawah menunjukkan distribusi nilai <i>frequency</i> sangat condong ke kanan. 
+										Hal ini menunjukkan bahwa Sebagian besar pelanggan melakukan sedikit pembelian.
+										<br><a class="image"><img src="images/RFM frequency.png" style="max-width: 100%; height: auto" /></a></p>
+									<h4>Monetary</h4>
+									<p><i>Monetary</i> adalah jumlah uang yang dikeluarkan pelanggan. Distribusi nilai<i> monetary</i> sangat condong ke kanan. 
+										Hal ini menunjukkan bahwa Sebagian besar pelanggan mengeluarkan sedikit uangnya untuk membeli produk perusahaan.
+										<br><a class="image"><img src="images/RFM monetary.png" style="max-width: 100%; height: auto" /></a></p>	
+									<p>Nilai-nilai ini kemudian digabungkan ke dalam satu tabel berdasarkan Pelanggan.
+										<br><a class="image"><img src="images/RFM by customerID.png" style="max-width: 70%; height: auto" /></a></p>	
+								</div>
+							</section>
+
+						<!-- Five -->
+							<section id="five">
+								<div class="container">
+									<h3>Segmentasi Pelanggan</h3>
+									<p>Nilai RFM akan diubah ke dalam skala 0-5, kemudian akan dilakukan penentuan segmentasi pelanggan sebagai berikut:<br>
+										&bull; Pelanggan terbaik: Nilai RFM lebih dari 4,5.<br>
+										&bull; Pelanggan bernilai tinggi: Nilai RFM antara 4-4,5.<br>																	
+										&bull; Pelanggan bernilai sedang: Nilai RFM antara 3-4.<br>
+										&bull; Pelanggan bernilai rendah: Nilai RFM antara 1,6-3.<br>
+										&bull; Pelanggan yang hilang: Nilai RFM kecil dari 1,6.<br>
+										<a class="image"><img src="images/RFM score.png" style="max-width: 80%; height: auto" /></a>
+									</p>
+									<p>Pelanggan yang tergolong sebagai Pelanggan terbaik adalah pelanggan yang masih berbelanja produk perusahaan, 
+										banyak melakukan transaksi serta membelanjakan banyak uang.
+										 Semakin rendah urutan segmentasi semakin rendah pula nilai pelanggan bagi perusahaan.
+										 <a class="image"><img src="images/RFM value.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Grafik di bawah menunjukkan jumlah pelanggan pada tiap segmentasi. 
+										Terlihat bahwa semakin tinggi nilai RFM, semakin sedikit jumlah pelanggan.
+										Untuk meningkatkan penjualan, perusahaan dapat memberikan program khusus kepada segmentasi <i>Top</i> dan <i>High Value</i>,
+										karena pelanggan pada segmentasi ini cenderung untuk membeli produk dengan nominal yang besar.
+										Pendekatan yang lebih terfokus ini juga akan mengurangi waktu dan biaya dibandingkan dengan pemasaran yang dilakukan tanpa target pasar yang jelas.
+										 <a class="image"><img src="images/RFM distribution.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+								</div>
+							</section>
+
+						<!-- Six -->
+							<section id="six">
+								<div class="container">
+									<h3>Analisis Cohort</h3>
+									<p>Analisis <i> Cohort</i> berguna untuk menganalisis pola pertumbuhan pengguna sejak mereka pertama 
+										kali menggunakan produk, hingga tanggal terakhir dalam data. 
+										Untuk bisnis <i>e-commerce</i>, analisis<i> cohort</i> adalah cara untuk mengetahui pelanggan mana yang paling berharga bagi bisnis mereka.</p>
+									<p>Dapat dilihat dari grafik di bawah bahwa pengguna cenderung meningkatkan pembelian seiring berjalannya waktu.
+										<i> Cohort</i> 12-2010 menunjukkan kinerja terkuat, sementara <i>Cohort</i> 02-2011 dan 04-2011 adalah yang terlemah.
+										<a class="image"><img src="images/RFM heatmap 1.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Terlihat bahwa pada masa-masa awal, terjadi penurunan tajam pada tingkat<i> retention</i>. 
+										Namun, seiring berjalannya waktu, tingkat<i> retention</i> mulai meningkat.
+										Hal ini terbilang positif, karena meskipun jumlah pelanggan awalnya menurun, pelanggan yang ada masih tetap bertahan. 
+										Selain itu, penambahan pelanggan baru turut mendukung pertumbuhan positif pada jumlah pelanggan.
+										<a class="image"><img src="images/RFM retention.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Sebelumnya, cohort dianalisis berdasarkan jumlah pelanggan. Selanjutnya, akan dibahas cohort berdasarkan jumlah barang yang dibeli.
+										<a class="image"><img src="images/RFM heatmap 2.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Terjadi peningkatan tajam pada tingkat <i>retention</i>, yang bahkan melewati nilai awal. 
+										Hal ini menunjukkan bahwa jumlah penjualan semakin meningkat seiring berjalannya waktu.
+										Kondisi ini terbilang positif, karena menggambarkan pertumbuhan yang baik dalam jumlah penjualan. Bahkan pada tanggal terakhir, 
+										tingkat <i>retention</i> lebih tinggi dibandingkan dengan 8 bulan pertama, yang menunjukkan adanya loyalitas pelanggan yang terus meningkat.
+										<a class="image"><img src="images/RFM retention 2.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Tampak bahwa setelah Oktober 2010, terjadi peningkatan tajam pada jumlah penjualan, yang sejalan dengan grafik tingkat<i> retention</i>. 
+										Jumlah penjualan meningkat menjelang akhir tahun dan menurun di awal tahun.
+										 Hal ini kemungkinan besar disebabkan oleh banyaknya pelanggan yang membeli hadiah dan dekorasi untuk kebutuhan perayaan Natal dan Tahun Baru.
+										 <a class="image"><img src="images/RFM penjualan.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Terakhir, akan dilakukan analisis <i>cohort</i> berdasarkan nilai pendapatan.
+										<a class="image"><img src="images/RFM heatmap 3.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Melihat grafik area berwarna gelap, terlihat bahwa jumlah penjualan menurun sejak awal pembelian (x=0),
+										 kemudian hampir mendekati angka 0, namun mulai naik lagi sejak<i> CohortIndex</i> 10. Hal ini menunjukkan bahwa pelanggan yang terdaftar 
+										 sejak 01-2010 banyak yang kembali bertransaksi pada periode 10-2010 dan terus berlanjut hingga saat ini.
+										Banyaknya total penjualan dari pelanggan yang terbilang baru (warna jingga) menunjukkan bahwa pelanggan 
+										baru merasa puas dengan layanan yang diberikan dan terus memilih perusahaan ini, terutama untuk kebutuhan hadiah.
+										<a class="image"><img src="images/RFM areamap.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Senada dengan grafik jumlah penjualan, jumlah pendapatan juga meningkat saat akhir tahun 2010 dan mengalami penurunan saat awal tahun.
+										<a class="image"><img src="images/RFM revenue.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+										<h4> 
+										Untuk melihat detail dan kodingan, tekan tombol ini 
+											<a href="https://github.com/ibrazami/RFM-Cohort.git" class="icon solid fa-lightbulb"></a>
+									</h4>
+								</div>
+
+							</section>							
+
+							
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; ibrazami. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

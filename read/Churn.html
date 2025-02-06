@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Churn Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="images/Asset 3.png" alt="" /></span>
+					<h1 id="logo">Ibrahim Razami</h1>
+					<!-- <p>I got reprogrammed by a rogue AI<br />
+					and now I'm totally cray</p> -->
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="#one" class="active">Abstrak</a></li>
+						<li><a href="#two">Pengumpulan Data</a></li>
+						<li><a href="#three">Persiapan Data</a></li>
+						<li><a href="#four">Pemrosesan Data</a></li>
+						<li><a href="#five">Pemberian Label</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="https://ibrazami.github.io" class="icon solid fa-home"><span class="label">Home</span></a></li>
+						<li><a href="https://github.com/ibrazami" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.linkedin.com/in/ibrahim-razami-935850106/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="image main" data-position="center">
+									<img src="images/banner.jpg" alt="" />
+								</div>
+								<div class="container">
+									<header class="major">
+										<h2>Churn Prediction</h2>										
+									</header>
+									<p>Model Logistic Regression digunakan dengan data yang telah di-oversampling untuk memprediksi 
+										apakah pelanggan akan berhenti berlangganan (churn) atau tidak.<br>
+									Faktor yang memengaruhi<i> churn </i>yaitu <i>contract renewal, data plan, data usage, cust serv calls, roam mins.</i><br>
+									Faktor yang tidak signifikan terhadap<i> churn </i>yaitu <i>account weeks, day mins, day calls, monthly charge, overage fee</i>
+								</p>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two">
+								<div class="container">
+									<h3>Pengumpulan Data</h3>
+									<p>Data berasal dari Kaggle dan berisi 3333 pelanggan dari perusahaan telekomunikasi. 
+										Terdapat 11 kolom yang menjelaskan atribut layanan yang digunakan pelanggan.
+										<a class="image"><img src="images/churn df.png" style="max-width: 80%; height: auto" /></a>
+									</p>
+									<p>
+										Tidak ada baris dan kolom yang kosong, serta seluruh tipe data berbentuk numerik. Sehingga data mentah sudah dapat diolah.</p>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three">
+								<div class="container">
+									<h3>Persiapan Data</h3>
+									<p>Dilakukan analisis menggunakan <i>library sklean feature collection</i> untuk menentukan fitur yang memiliki hubungan signifikan dengan <i>Churn</i>. 
+										Hasilnya menunjukkan bahwa fitur yang paling berpengaruh dalam memprediksi apakah pelanggan akan berhenti berlangganan adalah:
+										<i>ContractRenewal, DataPlan, DataUsage, CustServCalls, RoamMins</i>
+										<a class="image"><img src="images/churn FI.png" style="max-width: 80%; height: auto" /></a>
+									</p>
+								</div>
+							</section>
+
+						<!-- Four -->
+							<section id="four">
+								<div class="container">
+									<h3>Pemrosesan Data</h3>
+									<h4>Penentuan sampling</h4>
+									<p>Berdasarkan grafik di bawah terlihat bahwa proporsi data tidak seimbang, dimana jumlah data pelanggan yang tetap berlangganan jauh lebih banyak dibandingkan yang berhenti berlangganan.
+										Oleh karenanya akan dilakukan tiga pengujian, yaitu tanpa pengubahan proporsi data, dengan<i> oversampling</i> dan<i> undersampling</i>.<br>
+										<a class="image"><img src="images/churn label awal.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Proses <i>oversampling</i> menggunakan SMOTE berhasil menyeimbangkan proporsi data dengan menambah jumlah data minoritas sehingga proporsinya sama dengan data mayoritas.
+										Sementara itu,<i> undersampling</i> menggunakan NearMiss dilakukan dengan mengurangi jumlah data mayoritas, sehingga proporsi data menyesuaikan dengan jumlah data minoritas.<br>
+										<a class="image"><img src="images/churn sampling.png" style="max-width: 80%; height: auto" /></a>
+									</p>
+									<p>Model dilatih dengan 3 skenario tersebut, dengan hasil:<br>
+									<b>Data normal </b><br>								
+									&bull; Akurasi tinggi (>0.8), tetapi recall untuk kelas minoritas sangat rendah (0.19).<br>
+									&bull; Model cenderung bias terhadap kelas mayoritas, sehingga kurang mampu mengenali pelanggan yang akan churn.<br>
+									<b>Data oversampling </b><br>								
+									&bull; Akurasi sedikit menurun, tetapi recall untuk kelas<i> churn </i>meningkat signifikan.<br>
+									&bull; Model lebih seimbang dalam mengenali pelanggan yang akan<i> churn </i>dibandingkan model sebelumnya.<br>
+									<b>Data undersampling </b><br>								
+									&bull; Akurasi rendah, model kesulitan dalam memprediksi<i> churn </i>secara akurat.<br>
+									&bull; Pengurangan data mayoritas menyebabkan model kehilangan informasi penting.<br>
+									<a class="image"><img src="images/churn modelling.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<p>Dari hasil ini, model dengan oversampling lebih baik karena mampu mengenali pelanggan yang akan<i> churn </i>tanpa terlalu bias terhadap kelas mayoritas.</p>
+
+								</div>
+							</section>
+
+						<!-- Five -->
+							<section id="five">
+								<div class="container">
+									<h3>Pemberian Label</h3>
+									<p>Model tersebut kemudian digunakan untuk memberi label pada data pengujian, dengan detail hubungan antara variabel sebagai berikut:
+										<a class="image"><img src="images/churn variabel.png" style="max-width: 100%; height: auto" /></a>
+									</p>
+									<h4> Variabel yang Berpengaruh terhadap Churn</h4>
+									<p>
+										<b>Contract Renewal</b><br>								
+										&bull; Tidak ditemukan pelanggan yang memperbarui kontraknya masuk dalam kategori<i> churn </i>(warna jingga).<br>
+										&bull; Artinya, program perpanjangan kontrak yang menarik dapat membantu mengurangi tingkat churn.<br>
+										<b>Data Plan </b><br>								
+										&bull; Pelanggan yang mengalami<i> churn </i>cenderung memiliki paket data yang lebih rendah dibandingkan pelanggan yang tetap berlangganan.<br>
+										<b>Data Usage</b><br>
+										&bull; Pelanggan yang mengalami<i> churn </i>memiliki penggunaan data yang lebih rendah dibandingkan pelanggan yang tetap berlangganan.<br>
+										<b>Cust Serv Calls </b><br>								
+										&bull; Mayoritas pelanggan yang menghubungi layanan pelanggan 0–3 kali tidak mengalami churn.<br>
+										&bull; Sebaliknya, pelanggan yang menghubungi layanan pelanggan lebih dari 3 kali memiliki kecenderungan lebih tinggi untuk berhenti berlangganan.<br>
+										<b>Roam Mins</b><br>
+										&bull; Pelanggan yang mengalami<i> churn </i>cenderung memiliki waktu roaming yang lebih rendah dibandingkan pelanggan yang tetap berlangganan.<br>
+									</p>
+									<h4> Variabel yang Tidak Signifikan terhadap Churn</h4>
+									<p>
+										<b>Account Weeks</b><br>								
+										&bull; Lama waktu seseorang menjadi pelanggan tidak berhubungan signifikan dengan kemungkinan churn.<br>
+										&bull; Artinya, perusahaan tidak perlu khawatir apakah pengguna baru akan menjadi pelanggan yang loyal atau tidak.<br>
+										<b>Day Mins </b><br>								
+										&bull; Tidak ditemukan hubungan signifikan antara durasi panggilan harian dengan kemungkinan pelanggan berhenti berlangganan.<br>
+										<b>Day Calls</b><br>
+										&bull; Jumlah panggilan harian tidak memiliki korelasi yang jelas dengan pola<i> churn </i>pelanggan.<br>
+										<b>Monthly Charge </b><br>								
+										&bull; Biaya bulanan paket yang ditawarkan kepada pelanggan tidak memiliki dampak signifikan terhadap keputusan untuk berhenti berlangganan.<br>
+										<b>Overage Fee</b><br>
+										&bull; Biaya tambahan akibat melebihi batas paket tidak memiliki hubungan signifikan dengan keputusan pelanggan untuk berhenti berlangganan.<br>
+									</p>
+									
+									<h4> 
+										Untuk melihat detail dan kodingan, tekan tombol ini 
+											<a href="https://github.com/ibrazami/Churn-Prediction.git" class="icon solid fa-lightbulb"></a>
+									</h4>
+								</div>
+							</section>			
+							
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
